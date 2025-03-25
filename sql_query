@@ -1,4 +1,58 @@
 
+Problem statement
+/*
+Given the following table declaration, for a table that stores bids in auctions:
+CREATE TABLE BIDS (
+    ID BIGINTNOT NULLPRIMARY KEY,
+    AUCTION_ID BIGINTNOT NULL,
+    BIDDER VARCHAR(40) NOTNULL,
+    AMOUNT NUMERIC(8,2) NOTNULL
+);
+
+Write a SQL query to return the BIDDER and AMOUNT of the lowest unique bid of a given auction. That is, the lowest bid in an auction that is the only bid for that amount.
+Examples
+For example, if the BID table contains:
+
+ID
+
+AUCTION_ID
+
+BIDDER
+
+AMOUNT
+
+1	1	alice	10.00
+2	2	bob	10.00
+3	2	carol	10.00
+4	2	dave	11.00
+5	2	eve	12.00
+6	3	frank	10.00
+7	3	grace	10.00
+8	3	heidi	11.00
+9	3	ivan	11.00
+
+
+The query must return the following result for auction 1, because alice made the only bid, and so is trivially the lowest unique bid.
+BIDDER
+
+AMOUNT
+
+alice	10.00
+
+The query must return the following result for auction 2, because although bob and carol have bid the lowest amount, they both bid the same amount, and therefore their bids are not unique, and eve's bid is not the lowest unique bid.
+BIDDER
+
+AMOUNT
+
+dave	11.00
+
+The query must return no rows for auction 3, because there are no unique bids.
+
+The query must return no rows for auction 4, because there are no bids at all.
+ */
+
+
+
 Query:
 
 Earlier query : multiple auction amount
