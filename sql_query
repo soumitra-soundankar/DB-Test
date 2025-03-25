@@ -1,1 +1,17 @@
 
+Query:
+
+Earlier query : multiple auction amount
+
+select bidder, min(amount) from bid where id = (
+select id from bid where auction_id = (select auction_id, amount from bid group by amount, auction_id))
+)
+group by amount;
+
+
+Correct query for scnearios:
+
+Select b.bidder, b.amount
+from bids b
+where b.amount in (select amount from bids as sub where sub.auction_id = b.auction_id
+group by amount having count(*) = 1) order by b.auction_id, b.amount;
