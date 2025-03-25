@@ -1,0 +1,24 @@
+public class Duplicates {
+
+    public static void main(String[] args) {
+
+        int[] num = new int[]{1,1,4,5,7,9,8,5}; // Input
+        /*//*
+        Logic Map<Int, Long> = {1,2},{4,1},{5,1}
+        */
+        List<Integer> duplicates =
+                Arrays.stream(num)
+                        .boxed()
+                        .collect(Collectors.groupingBy(i -> i, Collectors.counting()))
+                        .entrySet()
+                        .stream()
+                        .filter(intEntry -> intEntry.getValue() > 1)
+                        .map(Map.Entry::getKey)
+                        .toList();
+
+        System.out.println(duplicates);
+    }
+}
+
+Output :
+[1, 5]
