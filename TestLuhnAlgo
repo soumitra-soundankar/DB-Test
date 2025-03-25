@@ -1,0 +1,56 @@
+
+public class TestLuhnAlgo {
+
+    /*
+
+    You are required to produce a solution to perform credit card number validation according to the Luhn algorithm below. This will be used for web-based validations and therefore should be tolerant of edge conditions and invalid data scenarios which can be exhibited on a website. In addition, it is required to support the entry of credit card numbers both with spaces and without spaces and to validate each of these appropriately.
+    You should prove its operation through test cases.
+    The Luhn Algorithm
+    The formula verifies a number against its included check-digit, which is usually appended to a partial account number to generate the full account number. This account number must pass the following test:
+    Counting from the check digit, which is the rightmost, and moving left, double the value of every second digit.
+    Sum the digits of the products together with the un-doubled digits from the original number.
+    If the total ends in 0 (put another way, if the total modulo 10 is congruent to 0), then the number is valid according to the Luhn formula; else it is not valid.
+    Examples
+    4556 7375 8689 9855	Valid
+    4556737586899855	Valid
+    4024 0071 0902 2143	Not valid
+     */
+
+    public static void main(String[] args){
+
+        String card1 = "4556 7375 8689 9855"; //input-1
+        String card2 = "4556737586899855 "; //input-2
+        String card3 = "4024 0071 0902 2143"; //input-3
+
+        System.out.println(card1 + " is " + isValidaCardNumber(card1));
+        System.out.println(card2 + " is " + isValidaCardNumber(card2));
+        System.out.println(card3 + " is " + isValidaCardNumber(card3));
+    }
+
+    public static boolean isValidaCardNumber(String cardNumber) {
+
+        int nDigits = cardNumber.length();
+
+        int nSum = 0;
+        boolean isSecond = false;
+        for (int i = nDigits - 1; i >= 0; i--)
+        {
+            int d = cardNumber.charAt(i) - '0';
+
+            if (isSecond == true)
+                d = d * 2;
+
+            nSum += d / 10;
+            nSum += d % 10;
+
+            isSecond = !isSecond;
+        }
+       return !(nSum % 10 == 0);
+    }
+}
+
+Result :
+
+4556 7375 8689 9855 is true
+4556737586899855  is true
+4024 0071 0902 2143 is false
